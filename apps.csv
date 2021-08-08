@@ -1,0 +1,48 @@
+essential,xorg,X Server
+essential,xorg-xinit,Display server boot
+essential,man,Manual
+essential,man-pages,Manual pages
+network,openssh,Remote login tool for SSH protocol
+network,networkmanager,Network manager
+audio,alsa-utils,Utilities for ALSA
+audio,asoundconf,Generates .asoundconf file
+audio,pulseaudio,Audio server
+audio,pavucontrol,GUI to control pulse audio
+tools,tldr,Short description of common CLI's
+tools,rsync,Synchronizing files across computers
+tools,unzip,unzip compressed files
+tools,arandr,xrandr GUI
+tools,xsel,Manipulate the X selection
+tools,fzf,Command line fuzzy finder
+tools,imagemagick,Command line image manipulation
+tools,scrot,Screenshot software
+tools,lxappearance,Theme switcher for GTK+
+tools,ripgrep,Faster alternative to grep
+tools,htop,Interactive process viewer
+tools,bashtop,Prettier than htop
+tools,font-manager,GUI for viewing fonts
+tools,zathura,PDF viewer
+tmux,tmux,Terminal multiplexer
+tmux,tmuxp,Configure tmux session + windows + panes via config files
+notifications,dunst,Notification system
+notifications,libnotify,Notifier
+git,git,Version control system
+git,diff-so-fancy,Human readable git diff
+i3,i3-wm,i3 window tile manager
+i3,i3status,i3 status bar
+i3,i3lock,i3 lock monitor
+i3,dmenu,Dynamic menu for X
+i3,i3-resurrect,Save and restore i3 session
+i3,feh,X11 image viewer
+i3,gtk-theme-shades-of-gray,Desktop theme
+zsh,zsh,Unix shell (Z-Shell)
+zsh,zsh-completions,Additional completions for Zsh
+zsh,zsh-syntax-highlighting,Syntax highlighting for ZSH
+neovim,neovim,Editor... and much more
+neovim,python-pynvim,Python for neovim
+js,npm,Package manager
+urxvt,rxvt-unicode,Terminal Urxvt
+urxvt,urxvt-tabbedex-mina86-git,Improved tabs for Urxvt (AUR)
+firefox,firefox,Browser Firefox
+fonts,ttf-font-awesome,Font Awesome icons
+fonts,ttf-dejavu,DeJavu font
