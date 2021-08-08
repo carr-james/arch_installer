@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # install dialog as it is used heavily in the installer
-pacman -Sy dialog
+pacman -Sy --noconfirm dialog
 
 
 # enable time sync
