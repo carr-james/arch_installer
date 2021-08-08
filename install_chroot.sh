@@ -90,13 +90,13 @@ dialog \
     --title "Root password" \
     --msgbox "Let's set a password for the root user." \
     10 60
-config_user root
+configure_user root
 
 dialog \ 
     --title "Create user" \
     --msgbox "Let's create a user." \
     10 60
-config_user
+configure_user
 
 echo "$name" > /tmp/user_name
 
