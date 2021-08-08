@@ -170,8 +170,8 @@ genfstab -U /mnt >> /mnt/etc/fstab
 
 
 # persist important values 
-echo "$eufi" > /mnt/var_uefi"
-echo "$hd" > /mnt/var_hd"
+echo "$eufi" > /mnt/var_uefi
+echo "$hd" > /mnt/var_hd
 mv comp /mnt/comp
 
 # download and run install_chroot script
