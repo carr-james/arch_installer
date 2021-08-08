@@ -3,7 +3,7 @@
 name=$(cat /tmp/user_name)
 
 apps_path="/tmp/apps.csv"
-# curl https://raw.githubusercontent.com/carr-james/arch_installer/main/apps.csv > $apps_path
+curl https://raw.githubusercontent.com/carr-james/arch_installer/main/apps.csv > $apps_path
 
 dialog \
     --title "Package Installer" \
