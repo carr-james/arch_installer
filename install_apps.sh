@@ -19,7 +19,7 @@ apps=("essential" "Essentials" on
       "network" "Networking" on
       "tools" "Useful Tools (highly recommended)" on
       "audio" "Audio" on
-      "fonts" "Fonts" on 
+      "fonts" "Fonts" on
       "tmux" "Tmux" on
       "notifier" "Notification Tools" on
       "git" "Git" on
@@ -38,7 +38,7 @@ apps=("essential" "Essentials" on
 #    # if the current group is in the auto_selected_groups array
 #    if [[ " ${auto_selected_groups[@]} " =~ " ${group} " ]]; then
 #        groups[$i]="${groups[$i]} on"
-#    else 
+#    else
 #        groups[$i]="${groups[$i]} off"
 #    fi
 # done
@@ -47,7 +47,7 @@ apps=("essential" "Essentials" on
 message=$(cat <<-EOM
 	Select the groups of applications you would like to install.
 
-	UP/DOWN to move cursor. 
+	UP/DOWN to move cursor.
 	SPACE to change selection.
 	ENTER to confirm selection.
 EOM
@@ -99,7 +99,7 @@ echo "$packages" | while read -r line; do
     ((pacman --noconfirm --needed -S "$line" > /tmp/arch_install 2>&1) \
         || echo "$line" >> /tmp/aur_queue) \
         || echo "$line" >> /tmp/arch_install_failed
-    
+
     # app specific post install commands
     if [ "$line" = "zsh" ]; then
         # set zsh as the default shell

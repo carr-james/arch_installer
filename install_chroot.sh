@@ -10,7 +10,7 @@ uefi=$(cat /var_uefi)
 hd=$(cat /var_hd)
 
 # rename system
-cat /comp > /etc/hostname && rm /comp 
+cat /comp > /etc/hostname && rm /comp
 
 # install GRUB
 pacman --noconfirm -S dialog
@@ -97,7 +97,7 @@ dialog \
     10 60
 configure_user root
 
-dialog \ 
+dialog \
     --title "Create user" \
     --msgbox "Let's create a user." \
     10 60

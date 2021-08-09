@@ -13,7 +13,7 @@ pacman -Sy --noconfirm dialog
 timedatectl set-ntp true
 
 
-# make sure the user is cool with erasing their storage device 
+# make sure the user is cool with erasing their storage device
 message=$(cat <<-EOM
 	This will install Arch Linux on your machine.
 
@@ -52,12 +52,12 @@ devices_list=($(lsblk -d | awk '{print "/dev/" $1 " " $4 " on"}' | grep -E 'sd|d
 message=$(cat <<-EOM
 	Which device would you like to install your new system onto?
 
-	UP/DOWN to move cursor. 
+	UP/DOWN to move cursor.
 	SPACE to change selection.
 	ENTER to confirm selection.
 
 	WARNING: Data on the selected device will be DESTROYED!
-	If you have multiple storage devices and are not 100% sure which is which then it is recommended to disconnect all devices except for the one you will use. 
+	If you have multiple storage devices and are not 100% sure which is which then it is recommended to disconnect all devices except for the one you will use.
 	EOM
 )
 dialog \
@@ -90,7 +90,7 @@ dialog \
     "$message" \
     20 60 2> swap_size
 
-swap_size=$(cat swap_size) && rm swap_size 
+swap_size=$(cat swap_size) && rm swap_size
 
 # TODO: prompt again if input is invalid instead of selecting the default
 [[ $swap_size =~ ^[0-9]+$ ]] || swap_size=$default_swap_size
@@ -128,8 +128,8 @@ eraseDisk "$hd_eraser_selection"
 # create partitions
 # uefi partition type = 1
 # bios partition type = 4
-boot_partition_type=1 
-[ "$uefi" = true ] || boot_partition_type=4 
+boot_partition_type=1
+[ "$uefi" = true ] || boot_partition_type=4
 
 # g - create non empty GPT partitoin tabl
 # n - create new partition
@@ -179,7 +179,7 @@ pacstrap /mnt base base-devel linux linux-firmware
 genfstab -U /mnt >> /mnt/etc/fstab
 
 
-# persist important values 
+# persist important values
 echo "$uefi" > /mnt/var_uefi
 echo "$hd" > /mnt/var_hd
 mv comp /mnt/comp
