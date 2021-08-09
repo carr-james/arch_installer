@@ -44,13 +44,14 @@ apps=("essential" "Essentials" on
 # done
 
 # TODO: see if we can enable/disable individual packages on a granular level
-read -r -d '' message << EOM
-Select the groups of applications you would like to install.
+message=$(cat <<-EOM
+	Select the groups of applications you would like to install.
 
-UP/DOWN to move cursor. 
-SPACE to change selection.
-ENTER to confirm selection.
+	UP/DOWN to move cursor. 
+	SPACE to change selection.
+	ENTER to confirm selection.
 EOM
+)
 dialog --checklist "$message" \
     0 0 0 \
     "${apps[@]}" 2> selected_app_groups
@@ -76,11 +77,12 @@ pacman -Syu --noconfirm
 rm -f /tmp/aur_queue
 
 
-read -r -d '' message << EOM
-The system will now install the selected packages.
+message=$(cat <<-EOM
+	The system will now install the selected packages.
 
-This may take a while...
+	This may take a while...
 EOM
+)
 dialog \
     --title "Let's Go!"
     --msgbox "$message" 13 60

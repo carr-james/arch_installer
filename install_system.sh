@@ -3,7 +3,7 @@
 # e - script stops on error
 # u - error if undefined variable
 # o pipefail - script fails if command piped fails
-set -euo pipefail
+set -euxo pipefail
 
 # install dialog as it is used heavily in the installer
 pacman -Sy --noconfirm dialog
@@ -14,15 +14,16 @@ timedatectl set-ntp true
 
 
 # make sure the user is cool with erasing their storage device 
-read -r -d '' message << EOM
-This will install Arch Linux on your machine.
+message=$(cat <<-EOM
+	This will install Arch Linux on your machine.
 
-It will COMPLETELY ERASE whatever is currently on your hard drive.
+	It will COMPLETELY ERASE whatever is currently on your hard drive.
 
-Make a backup, use a different disk or test this out with a virtual machine first if you don't know what you are doing!
+	Make a backup, use a different disk or test this out with a virtual machine first if you don't know what you are doing!
 
-Do you want to continue with the installation?
+	Do you want to continue with the installation?
 EOM
+)
 dialog \
     --title "Are you sure?" \
     --defaultno \
@@ -48,16 +49,17 @@ ls /sys/firmware/efi/efivars 1>/dev/null 2>/dev/null && uefi=true
 # selecting a storage device to install onto
 devices_list=($(lsblk -d | awk '{print "/dev/" $1 " " $4 " on"}' | grep -E 'sd|dh|vd|nvme|mmcblk'))
 
-read -r -d '' message << EOM
-Which device would you like to install your new system onto?
+message=$(cat <<-EOM
+	Which device would you like to install your new system onto?
 
-UP/DOWN to move cursor. 
-SPACE to change selection.
-ENTER to confirm selection.
+	UP/DOWN to move cursor. 
+	SPACE to change selection.
+	ENTER to confirm selection.
 
-WARNING: Data on the selected device will be DESTROYED!
-If you have multiple storage devices and are not 100% sure which is which then it is recommended to disconnect all devices except for the one you will use. 
-EOM
+	WARNING: Data on the selected device will be DESTROYED!
+	If you have multiple storage devices and are not 100% sure which is which then it is recommended to disconnect all devices except for the one you will use. 
+	EOM
+)
 dialog \
     --title "Choose you hard drive" \
     --nocancel \
@@ -71,16 +73,17 @@ hd=$(cat hd) && rm hd
 # sizing the partitions
 default_swap_size="8"
 
-read -r -d '' message << EOM
-Your system will need three partitions: Boot, Root and Swap.
+message=$(cat <<-EOM
+	Your system will need three partitions: Boot, Root and Swap.
 
-The boot partition will be 512M.
-The swap partition will be configured now.
-The root partition will use all remaining space.
+	The boot partition will be 512M.
+	The swap partition will be configured now.
+	The root partition will use all remaining space.
 
-Enter below the partition size (in Gb) for the swap partition. A good rule of thumb is to make it equal to the amount of RAM your system has.
-If you don't enter anything, it will default to ${default_swap_size}G.
+	Enter below the partition size (in Gb) for the swap partition. A good rule of thumb is to make it equal to the amount of RAM your system has.
+	If you don't enter anything, it will default to ${default_swap_size}G.
 EOM
+)
 dialog \
     --no-cancel \
     --inputbox \
@@ -189,11 +192,12 @@ rm  /mnt/var_hd
 rm  /mnt/install_chroot.sh
 
 # final message to user
-read -r -d '' message << EOM
-Congratulations! You've installed Arch Linux!
+message=$(cat <<-EOM
+	Congratulations! You've installed Arch Linux!
 
-Do you want to reboot your computer?
+	Do you want to reboot your computer?
 EOM
+)
 dialog \
     --title "To reboot or not to reboot" \
     --yesno "$message" 20 60
