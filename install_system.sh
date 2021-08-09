@@ -126,8 +126,10 @@ eraseDisk "$hd_eraser_selection"
 
 
 # create partitions
-boot_partition_type=1
-[ "$uefi" = true ] && boot_partition_type=4
+# uefi partition type = 1
+# bios partition type = 4
+boot_partition_type=1 
+[ "$uefi" = true ] || boot_partition_type=4 
 echo "$boot_partition_type" > /mnt/var_boot_partition_type
 
 # g - create non empty GPT partitoin tabl
