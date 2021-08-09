@@ -91,7 +91,7 @@ function configure_user() {
     unset pass
 }
 
-dialog \ 
+dialog \
     --title "Root password" \
     --msgbox "Let's set a password for the root user." \
     10 60
