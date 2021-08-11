@@ -45,36 +45,19 @@ echo "LANG-en_US.UTF-8" > /etc/locale.conf
 
 # root password and user creation
 function configure_user() {
-    if [ -z "$1" ]; then
-        dialog \
-            --nocancel \
-            --inputbox "Enter your user name." \
-            10 60 2> name
-    else
-        echo "$1" > name
+    local name=${1:-none}
+
+    if [ "$name" == none ]; then
+        dialog --nocancel --inputbox "Enter your user name." 10 60 2> name
     fi
 
-    dialog \
-        --nocancel \
-        --passwordbox "Enter your password." \
-        10 60 2> pass1
-
-    dialog \
-        --nocancel \
-        --passwordbox "Confirm your password." \
-        10 60 2> pass2
+    dialog --nocancel --passwordbox "Enter your password." 10 60 2> pass1
+    dialog --nocancel --passwordbox "Confirm your password." 10 60 2> pass2
 
     while [ "$(cat pass1)" != "$(cat pass2)" ]
     do
-        dialog \
-            --nocancel \
-            --passwordbox "The passwords do not match.\n\nEnter your password again." \
-            10 60 2> pass1
-
-        dialog \
-            --nocancel \
-            --passwordbox "Confirm your password." \
-            10 60 2> pass2
+        dialog --nocancel --passwordbox "The passwords do not match.\n\nEnter your password again." 10 60 2> pass1
+        dialog --nocancel --passwordbox "Confirm your password." 10 60 2> pass2
     done
 
     name=$(cat name) && rm name
