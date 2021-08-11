@@ -70,9 +70,8 @@ function configure_user() {
     fi
 
     # set user's password
-    # TODO: this might break if a user includes a ':' in their name or password since it is used as a delimiter
     echo "$name:$pass" | chpasswd
-    unset pass
+    echo "$name" > /tmp/user_name
 }
 
 dialog \
@@ -86,8 +85,6 @@ dialog \
     --msgbox "Let's create a user." \
     10 60
 configure_user
-
-echo "$name" > /tmp/user_name
 
 
 # ask if user wants to install app and dotfiles

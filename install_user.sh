@@ -27,8 +27,7 @@ aur_install() {
     qm=$(pacman -Qm | awk '{print $1}')
     for arg in "$@"; do
         if [[ "$qm" != *"$arg"* ]]; then
-            yay --noconfirm -S "$arg" &>> /tmp/aur_install \
-                || aur_manual_install "$arg" &>> /tmp/aur_install
+            yay --noconfirm -S "$arg" &>> /tmp/aur_install || aur_manual_install "$arg" &>> /tmp/aur_install
         fi
     done
 }
@@ -36,7 +35,7 @@ aur_install() {
 
 # install yay
 cd /tmp
-dialog --infobox "Installing \"Yay\", an AUR helper..." 10 60
+dialog --infobox "Installing 'Yay', an AUR helper..." 10 60
 aur_install yay
 
 
@@ -46,10 +45,7 @@ c=0
 cat /tmp/aur_queue | while read -r line; do
     c=$(( "$c" + 1 ))
 
-    dialog \
-        --title "AUR Package Installation" \
-        --infobox "Installing program $c out of $count: $line..." \
-        8 70
+    dialog --title "AUR Package Installation" --infobox "Installing program $c out of $count: $line..." 8 70
     aur_install "$line"
 done
 
