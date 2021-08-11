@@ -101,7 +101,7 @@ echo "$packages" | while read -r line; do
     # app specific post install commands
     if [ "$line" = "zsh" ]; then
         # set zsh as the default shell
-        chsh -S "$(which zsh)" "$name"
+        chsh -s "$(which zsh)" "$name"
     fi
 
     if [ "$line" = "networkmanager" ]; then
