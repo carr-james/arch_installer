@@ -49,6 +49,7 @@ function configure_user() {
 
     if [ "$name" == none ]; then
         dialog --nocancel --inputbox "Enter your user name." 10 60 2> name
+        name=$(cat name) && rm name
     fi
 
     dialog --nocancel --passwordbox "Enter your password." 10 60 2> pass1
@@ -60,8 +61,8 @@ function configure_user() {
         dialog --nocancel --passwordbox "Confirm your password." 10 60 2> pass2
     done
 
-    name=$(cat name) && rm name
-    pass=$(cat pass1) && rm pass1 pass2
+    pass=$(cat pass1) 
+    rm pass1 pass2
 
     # create user if it doesn't exist already
     if [[ ! "$(id -u "$name" 2> /dev/null)" ]]; then
