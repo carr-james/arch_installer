@@ -83,9 +83,7 @@ message=$(cat <<-EOM
 	This may take a while...
 EOM
 )
-dialog \
-    --title "Let's Go!"
-    --msgbox "$message" 13 60
+dialog --title "Let's Go!" --msgbox "$message" 13 60
 
 c=0
 echo "$packages" | while read -r line; do

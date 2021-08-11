@@ -61,7 +61,7 @@ function configure_user() {
         dialog --nocancel --passwordbox "Confirm your password." 10 60 2> pass2
     done
 
-    pass=$(cat pass1) 
+    pass=$(cat pass1)
     rm pass1 pass2
 
     # create user if it doesn't exist already
