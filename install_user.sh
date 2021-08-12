@@ -1,10 +1,5 @@
 #!/bin/bash
 
-# e - script stops on error
-# u - error if undefined variable
-# o pipefail - script fails if command piped fails
-set -euxo pipefail
-
 mkdir -p "/home/$(whoami)/Documents"
 mkdir -p "/home/$(whoami)/Downloads"
 
@@ -30,16 +25,17 @@ aur_install() {
     qm=$(pacman -Qm | awk '{print $1}')
     for arg in "$@"; do
         if [[ "$qm" != *"$arg"* ]]; then
-            yay --noconfirm -S "$arg" &>> /tmp/aur_install || aur_manual_install "$arg" &>> "$output"
+            yay --noconfirm -S "$arg" &>> "$output" || aur_manual_install "$arg" &>> "$output"
         fi
     done
 }
 
+output="/home/$(whoami)/install_log"
 
 # install yay
 cd /tmp
 dialog --infobox "Installing 'Yay', an AUR helper..." 10 60
-aur_install yay
+aur_install $output yay
 
 
 # install packages from aur_queue
@@ -49,14 +45,14 @@ cat /tmp/aur_queue | while read -r line; do
     c=$(( "$c" + 1 ))
 
     dialog --title "AUR Package Installation" --infobox "Installing program $c out of $count: $line..." 8 70
-    aur_install "$line"
+    aur_install "$output" "$line"
 done
 
 
 # install the dotfiles
 DOTFILES="/home/$(whoami)/.dotfiles"
 if [ ! -d "$DOTFILES" ]; then
-    git clone https://github.com/carr-james/dotfiles.git "$DOTFILES" >/dev/null
+    git clone https://github.com/carr-james/arch-dotfiles.git "$DOTFILES" >/dev/null
 fi
 
 source "$DOTFILES/zsh/.zshenv"
