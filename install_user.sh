@@ -24,10 +24,13 @@ aur_manual_install() {
 # If it isn't found then we try to install with yay, otherwise we
 # try to manually install it.
 aur_install() {
+    local -r app=${1:?}
+    shift 1
+
     qm=$(pacman -Qm | awk '{print $1}')
     for arg in "$@"; do
         if [[ "$qm" != *"$arg"* ]]; then
-            yay --noconfirm -S "$arg" &>> /tmp/aur_install || aur_manual_install "$arg" &>> /tmp/aur_install
+            yay --noconfirm -S "$arg" &>> /tmp/aur_install || aur_manual_install "$arg" &>> "$output"
         fi
     done
 }
