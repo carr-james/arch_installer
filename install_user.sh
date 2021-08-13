@@ -52,7 +52,7 @@ done
 # install the dotfiles
 DOTFILES="/home/$(whoami)/.dotfiles"
 if [ ! -d "$DOTFILES" ]; then
-    git clone https://github.com/carr-james/arch-dotfiles.git "$DOTFILES" >/dev/null
+    git --recurse-submodules clone https://github.com/carr-james/arch-dotfiles.git "$DOTFILES" >/dev/null
 fi
 
 source "$DOTFILES/zsh/.zshenv"
