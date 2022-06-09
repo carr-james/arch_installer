@@ -109,6 +109,8 @@ echo "$packages" | while read -r line; do
     fi
 done
 
+# add user to sudoers
+echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
 
 # switch to user and run the user installer
 curl https://raw.githubusercontent.com/carr-james/arch_installer/main/install_user.sh > /tmp/install_user.sh;
